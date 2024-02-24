@@ -74,7 +74,7 @@ export const BotoesContato = styled.div<{ show: boolean }>`
   margin-bottom: 12px;
 `
 export const ContatoDiv = styled.div`
-  padding: 16px 0 0 16px;
+  padding: 16px 0 8px 16px;
   display: flex;
   width: 100%;
   border-bottom: 1px solid #ccc;
@@ -105,6 +105,7 @@ export const BotaoCancelar = styled.button`
 `
 export const EditandoCttDiv = styled.div`
   display: block;
+  margin-bottom: 8px;
   .dadosContato {
     input {
       max-width: 100%;
