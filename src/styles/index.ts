@@ -10,23 +10,25 @@ const EstiloGlobal = createGlobalStyle`
     list-style: none;
   }
   body{
-    background-color: #f8f8f8;
+    background-color: #ddd;
     line-height: 1.6;
     color: #333;
   }
-  .oculto {
-    display: none;
-  }
-
-  .visivel {
-    display: block;
+  button{
+  cursor: pointer;
   }
 `
 
 export const Container = styled.div`
-  display: block;
-  height: 100vh;
-  padding: 0 30vw;
+  display: flex;
+  justify-content: center;
+  align-content: center;
 `
-
+export const ListaEstilo = styled.div`
+  min-width: 30vw;
+  background-color: #fff;
+  margin: 16px;
+  border-radius: 6px;
+  max-width: 400px;
+`
 export default EstiloGlobal
