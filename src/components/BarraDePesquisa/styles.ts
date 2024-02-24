@@ -5,7 +5,5 @@ export const PesquisaInput = styled.input`
   border: 1px solid #000;
   padding: 8px;
   width: 100%;
-`
-export const PesquisaDiv = styled.div`
-  padding: 16px 16px 0;
+  margin-left: 12px;
 `

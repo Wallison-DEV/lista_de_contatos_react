@@ -1,24 +1,57 @@
 import styled from 'styled-components'
 
-export const BotaoHome = styled.button`
-  padding: 4px;
-  border: none;
+export const HeadDiv = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  img {
+    max-height: 40px;
+    cursor: pointer;
+  }
+`
+
+export const MenuHamburguer = styled.div<{ open: boolean }>`
+  margin-top: 12px;
+  background-color: #fff;
+  border: 1px solid #ccc;
   border-radius: 4px;
-  margin-top: 4px;
-  font-weight: bold;
-  color: #29abe5;
-  font-size: 0.8rem;
+  max-height: ${(props) => (props.open ? '500px' : '0')};
+  overflow: hidden;
+  opacity: ${(props) => (props.open ? '1' : '0')};
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+  z-index: 999;
+`
+
+export const MenuItem = styled.div`
+  padding: 8px;
+  cursor: pointer;
+  &:last-child {
+    border-top: 1px solid #ccc;
+  }
   &:hover {
-    background-color: #29abe2;
-    color: #fff;
+    background-color: #f0f0f0;
+  }
+`
+
+export const BotaoHome = styled.button`
+  margin-top: 4px;
+  padding: 8px;
+  cursor: pointer;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  &:last-child {
+    border-top: 1px solid #ccc;
+  }
+  &:hover {
+    background-color: #f0f0f0;
   }
 `
 
 export const BotoesDiv = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
 `
 export const TresPontosButton = styled.button`
   font-weight: bold;
@@ -33,41 +66,21 @@ export const BotoesContato = styled.div<{ show: boolean }>`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  max-height: ${(props) => (props.show ? '500px' : '0')};
+  overflow: hidden;
   opacity: ${(props) => (props.show ? '1' : '0')};
-  transition: opacity 0.3s ease;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+  z-index: 999;
+  margin-bottom: 12px;
 `
 export const ContatoDiv = styled.div`
-  padding: 16px;
+  padding: 16px 0 0 16px;
   display: flex;
   width: 100%;
-
+  border-bottom: 1px solid #ccc;
   .dadosContato {
     width: 100%;
   }
-`
-export const MaisDiv = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  margin: 0 16px 16px 0;
-`
-export const BotoesMais = styled.div<{ show: boolean }>`
-  display: flex;
-  flex-direction: column;
-  opacity: ${(props) => (props.show ? '1' : '0')};
-  transition: opacity 0.3s ease;
-`
-export const PlusIcon = styled.button`
-  color: #fff;
-  background-color: #3498db;
-  border: none;
-  width: 48px;
-  height: 48px;
-  margin-left: 8px;
-  font-family: sans-serif;
-  border-radius: 50%;
-  font-size: 40px;
-  line-height: 1;
 `
 export const BotaoSalvar = styled.button`
   padding: 8px;
