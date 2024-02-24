@@ -5,7 +5,7 @@ import { useRef } from 'react'
 import { criarCtt } from '../../store/reducers/CriarCtt'
 
 import { InputDiv, BotaoForm, Form, FormInput } from './styles'
-import { ListaEstilo } from '../../styles'
+import { ListaEstilo, Titulo } from '../../styles'
 
 function Formulario() {
   const navigate = useNavigate()
@@ -36,6 +36,7 @@ function Formulario() {
 
   return (
     <ListaEstilo>
+      <Titulo>Contatos</Titulo>
       <Form>
         <InputDiv>
           <label onClick={() => inputNome.current?.focus()}>

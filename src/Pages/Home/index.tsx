@@ -1,24 +1,23 @@
+import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-
 import Formulario from '../../components/Formulario'
 import BarraDePesquisa from '../../components/BarraDePesquisa'
 import {
+  HeadDiv,
   BotaoHome,
-  BotoesMais,
   ContatoDiv,
   BotoesContato,
   TresPontosButton,
   BotoesDiv,
-  PlusIcon,
-  MaisDiv,
   BotaoSalvar,
   BotaoCancelar,
-  EditandoCttDiv
+  EditandoCttDiv,
+  MenuHamburguer,
+  MenuItem
 } from './styles'
-import { ListaEstilo } from '../../styles'
+import { ListaEstilo, Titulo } from '../../styles'
 import { RootReducer } from '../../store'
-import { useEffect, useState } from 'react'
 
 interface Contato {
   nome: string
@@ -28,7 +27,6 @@ interface Contato {
 
 function Home() {
   const navigate = useNavigate()
-  const [exibicaoMais, setExibicaoMais] = useState(false)
   const [estaEditandoCtt, setEstaEditandoCtt] = useState(false)
   const [contatoEditandoIndex, setContatoEditandoIndex] = useState<
     number | null
@@ -40,11 +38,12 @@ function Home() {
   const [exibicaoEdit, setExibicaoEdit] = useState<boolean[]>(
     Array.from({ length: listaDeContatos.length }, () => false)
   )
-
+  const [menuAberto, setMenuAberto] = useState(false) // Estado para controlar se o menu hamburguer está aberto
   const [nomeEdit, setNomeEdit] = useState('')
   const [telefoneEdit, setTelefoneEdit] = useState('')
   const [emailEdit, setEmailEdit] = useState('')
 
+  // Restaurando os dados do contato ao editar
   useEffect(() => {
     if (estaEditandoCtt && contatoEditandoIndex !== null) {
       const contato = listaDeContatos[contatoEditandoIndex]
@@ -63,7 +62,6 @@ function Home() {
     const contatosLocalStorage = JSON.parse(
       localStorage.getItem('contatos') || '[]'
     )
-
     const novaLista = [
       ...contatosLocalStorage.slice(0, indexRemove),
       ...contatosLocalStorage.slice(indexRemove + 1)
@@ -78,10 +76,6 @@ function Home() {
     setExibicaoEdit(newExibicaoEdit)
   }
 
-  function exibirBotoesMais() {
-    setExibicaoMais(!exibicaoMais)
-  }
-
   const filtrarTarefas = () => {
     return listaDeContatos.filter(
       (item) =>
@@ -90,10 +84,12 @@ function Home() {
         item.email.includes(termo)
     )
   }
+
   const editarContato = (index: number) => {
     setEstaEditandoCtt(true)
     setContatoEditandoIndex(index)
   }
+
   const salvarEdicao = () => {
     if (contatoEditandoIndex !== null) {
       const novoContato = {
@@ -108,6 +104,7 @@ function Home() {
       window.location.reload()
     }
   }
+
   const cancelarEdicao = () => {
     setEstaEditandoCtt(false)
     setNomeEdit('')
@@ -118,7 +115,23 @@ function Home() {
   return (
     <ListaEstilo>
       <div className="App">
-        <BarraDePesquisa />
+        <Titulo>Contatos</Titulo>
+        <HeadDiv>
+          <img
+            onClick={() => setMenuAberto(!menuAberto)}
+            src="./menu_hamburguer.png"
+            alt=""
+          />
+          <BarraDePesquisa />
+        </HeadDiv>
+        <MenuHamburguer open={menuAberto}>
+          {' '}
+          {/* Componente do menu hamburguer */}
+          <MenuItem onClick={() => navigate('/formulario')}>
+            Adicionar contato
+          </MenuItem>
+          <MenuItem onClick={limparContatos}>Limpar lista de contatos</MenuItem>
+        </MenuHamburguer>
         {window.location.pathname === '/formulario' && <Formulario />}
         <br />
         {filtrarTarefas().map((contato, index) => (
@@ -182,20 +195,9 @@ function Home() {
             )}
           </ContatoDiv>
         ))}
-
-        <MaisDiv>
-          <BotoesMais show={exibicaoMais}>
-            <BotaoHome onClick={() => navigate('/formulario')}>
-              Adicionar contato
-            </BotaoHome>
-            <BotaoHome onClick={limparContatos}>
-              Limpar lista de contatos
-            </BotaoHome>
-          </BotoesMais>
-          <PlusIcon onClick={() => exibirBotoesMais()}>+</PlusIcon>
-        </MaisDiv>
       </div>
     </ListaEstilo>
   )
 }
+
 export default Home

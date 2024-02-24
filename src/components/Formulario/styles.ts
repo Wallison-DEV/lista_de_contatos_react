@@ -33,15 +33,16 @@ export const FormInput = styled.input`
 export const BotaoForm = styled.button`
   display: block;
   width: 100%;
-  margin-top: 8px;
+  margin-top: 4px;
   padding: 8px;
-  border: none;
+  cursor: pointer;
+  background-color: #fff;
+  border: 1px solid #ccc;
   border-radius: 4px;
-  font-weight: bold;
-  color: #29abe5;
-  font-size: 1rem;
+  &:last-child {
+    border-top: 1px solid #ccc;
+  }
   &:hover {
-    background-color: #29abe2;
-    color: #fff;
+    background-color: #f0f0f0;
   }
 `

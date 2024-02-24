@@ -23,12 +23,20 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-content: center;
+  height: 100vh;
 `
+export const Titulo = styled.h2`
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 12px;
+`
+
 export const ListaEstilo = styled.div`
   min-width: 30vw;
   background-color: #fff;
-  margin: 16px;
+  padding: 16px 32px;
   border-radius: 6px;
   max-width: 400px;
+  margin: auto;
 `
 export default EstiloGlobal
